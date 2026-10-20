@@ -1,0 +1,25 @@
+Nexvia Quote to PO Lines — v1.54
+
+INSTALL / UPDATE
+1. Open your existing Nexvia - Quote to PO Lines script in Tampermonkey.
+2. Replace all its contents with nexvia-quote-to-po-v1.54.user.js and save.
+3. Refresh Nexvia. Keep only one copy of the script enabled.
+4. Read the PDF again; do not use a preview made with the old version.
+5. Check yellow lines and the tax warning before adding or submitting.
+
+FIXES
+- Quantity / M² / Per tables use the correct billing quantity for each item.
+- Sheet counts and original quoted rates remain in the descriptions.
+- Wrapped descriptions and product references stay with their own item.
+- EA/EACH, BOX and M2 units are recognised; Half Litre packs use Each.
+- Rounded prices use derived rates to retain printed line amounts, with review flags.
+- Item amounts must match the ex-GST subtotal. Ambiguous/missing cells stop parsing.
+- The preview sums rounded line amounts consistently with PO import.
+
+VALIDATION
+Supplied quotation: 11 lines, $31,236.48 excluding GST.
+Its printed GST is $3,123.67 versus $3,123.65 at 10%. The script logs this
+source discrepancy for review and does not invent a balancing charge.
+Tested with PDF.js 3.11.174 and a simulated Nexvia grid; live Nexvia has not
+been changed. If Nexvia limits rate precision, review any validation error
+and do not submit until its saved amounts match the quote.
