@@ -1,0 +1,66 @@
+LENNOX | DESKTOP MANAGEMENT + IPAD REPORT v2.0
+
+WHAT IS READY
+- Desktop management: add/edit/delete scope entries, manage multiple POs and
+  document links, import the existing Excel register, download/restore backups.
+- iPad report: viewing, filters, search, sorting and all five document-link roles.
+  No file import or editing controls. Portrait and landscape touch layouts.
+- Microsoft 365 integration code: delegated sign-in, private OneDrive reads,
+  conditional uploads and two-minute foreground refresh on the viewing page.
+
+ACTIVATION IS STILL REQUIRED
+The website must be enabled in GitHub Pages and a Microsoft Entra application
+must be registered for its exact HTTPS address. No account login, admin consent,
+private register upload or real Microsoft 365 save has been performed here.
+Browser tests use fictional data and mocked Microsoft responses. The iPad layout
+was tested at tablet portrait/landscape sizes in Chromium, not physical Safari.
+
+SETUP
+Follow SETUP-MICROSOFT-365.md. Do this once on the desktop.
+Then open the desktop site, connect the public app IDs, sign in, import your
+current populated workbook and choose Save to OneDrive.
+Click iPad report link to obtain the configured viewing URL. Open that URL in
+Safari on the iPad and sign in with the same Microsoft 365 account. Use Share >
+Add to Home Screen if desired. The iPad does not need to import a workbook.
+
+DATA SOURCE
+The shared source is Villa-Scope-Live-Register.json in the signed-in account's
+OneDrive root. Desktop edits publish to this private file. Excel is supported
+as an explicit import, including the existing VillaScopes / POReferences schema.
+Changes made later in Excel do not automatically appear until imported/published.
+Desktop edits do not modify the original Excel workbook or Nexvia.
+Save to OneDrive publishes; Download backup creates a local JSON copy only.
+The iPad reads on sign-in, on Refresh report, every two minutes while visible,
+and when the page becomes visible again. Refresh keeps valid filters/search.
+If sign-in expires, use Sign in again. Document links retain their normal access
+permissions. A missing link is shown as plain text; no URLs are guessed.
+
+ACCOUNT AND ACCESS
+Use the same Microsoft 365 account on both devices. This version uses /me/drive;
+other users' OneDrives and team-wide account/role management are not configured.
+The viewing route requests Files.Read. Desktop requests Files.ReadWrite.
+View-only describes the iPad interface, not a separate administrator role or
+permission boundary for the owner of the OneDrive account. Microsoft permissions
+remain the access boundary. Tokens use MSAL session storage; only public app IDs
+are saved in connection settings or included in the generated viewing URL.
+The website has no private records, client secret, embedded login or access token.
+
+SAFER EDITING
+Keep one editor at a time. Save checks the current OneDrive file ID/eTag and uses
+an upload session with a matching eTag for updates. A version conflict stops the
+save. Download a backup, refresh the shared register and reconcile manually.
+A network failure can leave a save uncertain; keep the backup and refresh before
+retrying. First publication uses fail-on-conflict so it does not rename/overwrite
+an existing register unexpectedly. No document files are deleted when an entry
+or link is removed.
+
+DEPLOYMENT FILES
+index.html and app-icon.png form the static site. The ExcelJS and MSAL readers
+are embedded; no runtime CDN is used. Host it over HTTPS, not file:// or a raw
+GitHub download URL. A .nojekyll file is included for GitHub Pages.
+No service worker/offline caching is installed. Microsoft sign-in, refresh and
+online PDF documents require internet. Adding to Home Screen creates a shortcut.
+
+THIRD PARTY
+ExcelJS 4.4.0 (MIT) and Microsoft MSAL Browser 4.25.0 (MIT).
+See LICENSE-exceljs.txt and LICENSE-msal.txt.
