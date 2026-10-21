@@ -1,0 +1,28 @@
+Nexvia Quote to PO Lines — v1.55
+
+INSTALL / UPDATE
+1. Extract this ZIP and open nexvia-quote-to-po-v1.55.user.js.
+2. In Tampermonkey, open the existing Nexvia - Quote to PO Lines script.
+3. Replace all its contents with the new script, save, then refresh Nexvia.
+4. Keep only one copy enabled. Read the PDF again to replace the old preview.
+
+FIXES
+- Reads Capral-style order acknowledgements with stacked Quantity / Ordered,
+  Estimated / Del. Date and Value / Line Total headings.
+- Quantity comes from Quantity Ordered; Value with $/EA is the unit price.
+- The item sequence and estimated date do not become quantity or product text.
+- Product codes, dimensions and wrapped finish text stay in the description.
+- Item totals must reconcile to the AUD subtotal, and subtotal plus GST must
+  match Invoice Total. Ambiguous or inconsistent values stop the read.
+- Includes v1.54 area-based pricing and all earlier fixes.
+
+SUPPLIED PDF RESULT
+Description: 100129 3.00 1200 2400 MF 5005 H34 MILL FINISH
+Quantity: 4 EA
+Unit price: $174.23
+Ex-GST amount: $696.92
+GST: $69.69
+Including GST: $766.61
+
+Tested with the actual PDF using PDF.js 3.11.174 and a simulated Nexvia grid.
+Your live PO has not been changed. Review the saved values before submitting.
