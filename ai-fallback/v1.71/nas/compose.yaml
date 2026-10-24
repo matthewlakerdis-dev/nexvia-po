@@ -1,0 +1,16 @@
+services:
+  nexvia-ai:
+    image: node:22-alpine
+    restart: unless-stopped
+    working_dir: /app
+    command: ["node", "server.mjs"]
+    volumes:
+      - ./backend:/app:ro
+      - ./data:/data
+    env_file:
+      - .env
+    environment:
+      HOST: "0.0.0.0"
+      PORT: "8787"
+    ports:
+      - "127.0.0.1:8787:8787"
